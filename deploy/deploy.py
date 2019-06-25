@@ -2,6 +2,7 @@
 # encoding: utf-8
 import sys
 import comm.tarsBuild as tarsBuild
+import comm.tarsPackage as tarsPackage
 import comm.tarsCheck as tarsCheck
 import comm.tarsDeploy as tarsDeploy
 import comm.tarsTest as tarsTest
@@ -20,6 +21,8 @@ def do():
         check()
     elif "build" == param:
         build()
+    elif "package" == param:
+        package()
     elif "deploy" ==  param:
         deploy()
     elif "test" == param:
@@ -35,6 +38,9 @@ def check():
 def build():
     tarsBuild.do()
 
+def package:
+    tarsPackage.do()
+
 def deploy():
     tarsDeploy.do()
 
@@ -49,6 +55,7 @@ Parameter:
     all : check the environment,build the code ,deploy and test
     check : check the environment
     build : build the code to get binary file
+    package: package
     deploy : deploy the frame ,you must run the command build to get  binary file
     test :  test if all the server are ok
 Attention:

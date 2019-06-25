@@ -80,20 +80,20 @@ def deployWeb():
     result = doCmdIgnoreException("node --version")
     if result["status"] != 0:
         log.infoPrint("install node start...")
-        doCmd(" export NVM_DIR=\"$HOME/.nvm\";[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\";source /etc/profile && nvm install v8.11.3")
+        doCmd(" export NVM_DIR=\"$HOME/.nvm\";[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\";sudo -s source /etc/profile && nvm install v8.11.3")
         log.infoPrint("install node success")
     else:
         log.infoPrint("node version  is {}".format(result["output"]))
     result = doCmdIgnoreException("pm2 --version")
     if result["status"] != 0:
-        doCmd("export NVM_DIR=\"$HOME/.nvm\";[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\";source /etc/profile &&  npm install -g pm2 --registry=https://registry.npm.taobao.org")
+        doCmd("export NVM_DIR=\"$HOME/.nvm\";[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\";sudo -s source /etc/profile &&  npm install -g pm2 --registry=https://registry.npm.taobao.org")
     else:
         log.infoPrint(" pm2 version  is {}".format(result["output"]))
 
     replaceConf("/usr/local/app/web/config/tars.conf", "registry.tars.com", localIp)
     replaceConf("/usr/local/app/web/config/webConf.js", "db.tars.com", mysqlHost)
 
-    doCmd("cd /usr/local/app/web;export NVM_DIR=\"$HOME/.nvm\";[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\";source /etc/profile && npm install --registry=https://registry.npm.taobao.org;npm run prd")
+    doCmd("cd /usr/local/app/web;export NVM_DIR=\"$HOME/.nvm\";[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\";sudo -s source /etc/profile && npm install --registry=https://registry.npm.taobao.org;npm run prd")
     return
 
 def initDB():
