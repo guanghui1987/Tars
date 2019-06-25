@@ -38,6 +38,8 @@ def packageNodeServer():
     confDir = "{}/framework/deploy/{}".format(baseDir,server)    
     dstDir = "{}/framework/build/tmp/{}".format(baseDir,server)
     log.infoPrint(" deploy {} start srcDir is {} , confDir is {} , dstDir is {}  ".format(server,srcDir,confDir,dstDir))
+    if not os.path.exists(dstDir):
+        os.makedirs(dstDir)
     copytree(srcDir,dstDir)
     copytree(confDir,dstDir)
     updateNodeConf(dstDir,server)
