@@ -38,7 +38,7 @@ def check():
 def build():
     tarsBuild.do()
 
-def package:
+def package():
     tarsPackage.do()
 
 def deploy():
